@@ -11,10 +11,11 @@ void createUser(void);
 void changePin(void);
 void balanceCheck(void);
 int main(){
-printf("\n\nWelcome\n\n");
+printf("\n\n\t\t\t_____________Welcome_____________\n\n");
 char cont='y';
 while(cont=='y'){
-    printf("\n1.Add a user \n2.Make A Withdrawal \n3.ReadData\n4.Change Pin\n 5.Check My Balance \n>>>:");
+        system("color 4f");
+    printf("\n\t\t1.Add a user \n\n\t\t2.Make A Withdrawal \n\n\t\t3.ReadData\n\n\t\t4.Change Pin\n\n\t\t5.Check My Balance\n \n\t\t>>>:");
     char choice;
     scanf(" %c",&choice);
     fflush(stdin);
@@ -36,7 +37,7 @@ while(cont=='y'){
                     balanceCheck();
                     break;
                 default:
-                    printf("Please enter A valid Choice to continue");
+                    printf("\n\nPlease enter A valid Choice to continue\n\n");
     }
     printf("\nWould you like to continue\n");
     scanf(" %c",&cont);
@@ -46,27 +47,29 @@ while(cont=='y'){
 return 0;
 }
 void createUser(){
+        system("cls");
         struct banker curr;
         FILE *fp;
         fp=fopen("newData.txt","a");
-        printf("Please enter name: ");
+        printf("\t\tPlease enter name: ");
         scanf(" %s",curr.name);
-        printf("\nPlease enter balance: ");
+        printf("\n\t\tPlease enter balance: ");
         fflush(stdin);
         float balance=0;
         scanf("%f",&balance);
         //printf("\n***Balnce is %f\**n",balance);
         curr.balance=balance;
-        printf("\nPlease enter the id: ");
+        printf("\n\t\tPlease enter the id: ");
         scanf("%d",&curr.id);
-        printf("\nAccount Created successfully\n");
+        printf("\n\n\n\t\tAccount Created successfully\n");
         fwrite(&curr,sizeof(struct banker),1,fp);
         fclose(fp);
 }
 void makeWithdrawal(){
+    system("cls");
         float amount;
         int id=0;
-        printf("What is your id: ");
+        printf("\n\t\tWhat is your id: ");
         scanf(" %d",&id);
         struct banker curr;
         struct banker toWrite;
@@ -109,6 +112,7 @@ void makeWithdrawal(){
 
 
     void readEntries(){
+        system("cls");
     FILE *fp;
     fp=fopen("newData.txt","r");
     if(fp==NULL){
@@ -125,6 +129,7 @@ void makeWithdrawal(){
 
 void changePin()
 {
+        system("cls");
         printf("Please enter the old pin: ");
         int id =0;
         int newId=0;
@@ -186,10 +191,9 @@ void balanceCheck(){
                             pres=1;
                             printf("\n***WELCOME %s ",curr.name);
                             printf("\nYour Account Balance GHS: %.2f\n",curr.balance);
+                            printf("\t\t\t\t________________\n\t\t\t\t______________\n");
                         }
             }
-            printf("\nThis is pres %d\n",pres);
-
 
             if(!pres)
             {
