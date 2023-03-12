@@ -82,16 +82,25 @@ void makeWithdrawal(){
         printf("\nCan't create or read file\n");
     }
         while(fread(&curr,sizeof(struct banker),1,fp)){
-                printf("\nReading %s %d \n",curr.name,curr.id);
-                 printf("Reached here");
+                //printf("\nReading %s %d \n",curr.name,curr.id);
+                // printf("Reached here");
             if(curr.id==id){
                 printf("Welcome %s\n",curr.name);
                 pres=1;
                 printf("\nHow much would you like to withdraw: ");
                 scanf("%f",&amount);
+
                 strcpy(toWrite.name,curr.name);
                 fflush(stdin);
                 toWrite.balance=curr.balance-amount;
+
+                //CHECK IF BALANCE IS LESS THAN AMOUNT TO WTIHDRAW
+
+                if(curr.balance<amount){
+                    printf("\nInsufficient Balance to perfom this transaction\n");
+
+                    toWrite.balance=curr.balance;
+                }
                 toWrite.id=curr.id;
                 fclose(fp1);
                 fp1=fopen("tmpData.txt","a");
